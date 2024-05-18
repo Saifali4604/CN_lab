@@ -1,0 +1,65 @@
+/*
+*************************************CRC*******************************************
+Reads the data to be transmitted.
+Appends zeros to the data to accommodate the CRC.
+Calculates the CRC and appends it to the data for transmission.
+Simulates the transmission by printing the transmitted data.
+Reads the received data.
+Calculates the CRC for the received data.
+Prints the actual data received after removing the CRC.
+*/
+
+#include <stdio.h>
+#define degree 16
+
+void xor_division(int data[], int length, int Remainder[]) {
+    int ccit[] = {1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1};
+    int ccit_size = degree + 1; 
+    for (int i = 0; i < length; i++) {
+        Remainder[i] = data[i]; // Copy into result Array
+    }
+    for (int i = 0; i <= length - ccit_size; i++) {
+        if (Remainder[i] == 1) { // checking if the current bit is 1 
+            for (int j = 0; j < ccit_size; j++) {
+                Remainder[i + j] = Remainder[i + j] ^ ccit[j]; // bit wise XOR operation
+            }
+        }
+    }
+    printf("\nRemainder: ");
+    for (int i = 0; i < degree; i++) {
+        printf("%d", Remainder[length - degree + i]); //prints the remainder
+    }
+}
+
+int main() {
+    int data[100],received_data[100], length, r_length;
+    char ch;
+    printf(" Enter the Data to be transmited : ");
+    while ((ch = getchar())!= '\n')
+        data[length++] = ch - '0';
+    printf("Data is: ");
+    for (int i = 0; i < length + degree; i++) {
+        if(i>=length)
+            data[i] = 0;
+        printf("%d", data[i]);
+    }
+    length+=degree;
+    int Remainder[length];
+    xor_division(data, length, Remainder); // CRC calculation
+    printf("\nTransmitting Data is : ");
+    for (int i = 0; i < length; i++) {
+        if(i >= length - degree)
+            data[i] = Remainder[i]; //append CRC to the transmitting data
+        printf("%d", data[i]);
+    }
+    printf(" Enter the recived data : ");
+    while ((ch = getchar())!= '\n')
+        received_data[length++] = ch - '0';
+    int Remainder_of_received[length];
+    xor_division(received_data, r_length, Remainder_of_received);
+    printf("\nActual Data is : ");
+    for (int i = 0; i < r_length - degree; i++) {
+        printf("%d", received_data[i]);
+    }    
+    return 0;
+}
