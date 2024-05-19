@@ -18,7 +18,7 @@ void xor_division(int data[], int length, int Remainder[]) {
     for (int i = 0; i < length; i++)
         Remainder[i] = data[i]; // Copy into result Array
     for (int i = 0; i <= length - ccit_size; i++)
-        if (Remainder[i] == 1 || i == 0) // checking if the current bit is 1 
+        if (Remainder[i] == 1 ) // checking if the current bit is 1 
             for (int j = 0; j < ccit_size; j++) 
                 Remainder[i + j] = Remainder[i + j] ^ ccit[j]; // bit wise XOR operation
     printf("\nRemainder: ");
