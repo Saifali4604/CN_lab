@@ -23,6 +23,8 @@ cd CNP
 cd [folder Name]
 ```
 To Create C file for exp1: ``` gedit exp1.c ```
+
 To Compile C file: ``` gcc exp1.c ```
+
 To Run C file: ``` ./a.out ```
 
