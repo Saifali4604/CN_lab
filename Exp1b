@@ -10,8 +10,8 @@ Prints the transmitted bit stream after stuffing.
 #include<string.h>
 
 void destuffing(char input_data[], char output_data[]){
-    int length_data = strlen(input_data), j = 0;
-    for(int i = 6; i < length_data - 6; i++){
+    int length_data = strlen(input_data), j = 0, i;
+    for(i = 6; i < length_data - 6; i++){
         output_data[j++] = input_data[i];
         if(i >= 3 && input_data[i]=='E' && input_data[i-1]=='L' && input_data[i-2]=='D'){
             i=i+3;
