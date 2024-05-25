@@ -15,7 +15,7 @@ The position in the output array is calculated as (seq_No * Rows) + j
 int main() {
     printf("Enter the data to be encrypted: ");
     char ch, data[30][30], output[100], seq[] = "MEGABUCK";
-    int i, j, k, count, Rows = 0, seq_N0 = 0, len = strlen(seq);
+    int i, j, k, Columns = 0, Rows = 0, seq_No = 0, len = strlen(seq);
     
     while ((ch = getchar()) != '\n') { // Read input data into the matrix
         data[Rows][Columns++] = ch;
@@ -48,4 +48,5 @@ int main() {
         printf("%c", output[i]);
     }
     printf("\n");
+    return 0;
 }
