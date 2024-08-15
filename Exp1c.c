@@ -22,8 +22,9 @@ void xor_division(int data[], int length, int Remainder[]) {
             for (j = 0; j < ccit_size; j++) 
                 Remainder[i + j] = Remainder[i + j] ^ ccit[j]; // bit wise XOR operation
     printf("\nRemainder: ");
-    for (i = 0; i < degree; i++)
+    for (i = 0; i < length; i++)
         printf("%d", Remainder[i]); //prints the remainder
+    
 }
 
 int main() {
@@ -53,9 +54,21 @@ int main() {
         received_data[length++] = ch - '0';
     int Remainder_of_received[length];
     xor_division(received_data, length, Remainder_of_received);
-    printf("\nActual Data is : ");
-    for (i = 0; i < length - degree; i++) {
-        printf("%d", received_data[i]);
-    }    
+    // Check if the remainder is zero (i.e., no error)
+    int error = 0;
+    for (i = 0; i < length; i++) {
+        if (Remainder_of_received[i] != 0) {
+            error = 1;
+            break;
+        }
+    }
+    if (error == 0) {
+        printf("\nActual Data is: ");
+        for (i = 0; i < length - degree; i++) {
+            printf("%d", received_data[i]);
+        } 
+    } else {
+        printf("\nReceived Data is Not correct");
+    }
     return 0;
 }
