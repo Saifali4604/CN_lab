@@ -2,7 +2,7 @@
 #include <string.h>
 #include <ctype.h>
 
-char ch, output[100], seq[36] = "qwertyuiopasdfghjklzxcvbnm1234567890";
+char ch, data[100], output[100], seq[36] = "qwertyuiopasdfghjklzxcvbnm1234567890";
 int i, j, len;
 
 void getdata() {
